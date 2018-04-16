@@ -1,0 +1,29 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "my blog built with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GayeChen/Myblog.git"
+  },
+  "keywords": [
+    "blog",
+    "node",
+    "express"
+  ],
+  "author": "chengxiao <1580850542@qq.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GayeChen/Myblog/issues"
+  },
+  "homepage": "https://github.com/GayeChen/Myblog#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "pug": "^2.0.3"
+  }
+}
