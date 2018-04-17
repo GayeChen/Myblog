@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+    .auth-page
+        .container.page
+            .row
+                .col-md-6.offset-md-3.col-xs-12
+                    h1.text-xs-center 登录
+                    p.text-xs-center
+                        a(href='/signup') 需要一个账号？
+                    ul.error-messages
+                        each val, key in messages.errors
+                            li #{key} #{val}
+                    form.form-horizontal(method='POST')
+                        fieldset
+                            fieldset.form-group
+                                input.form-control.form-control-lg(type='email', name='emial', id='email', placeholder='Email', autofocus, required)
+                            fieldset.form-group
+                                input.form-control.form-control-lg(type='password', name='password', id='password', placeholder='Password', required)
+                            button.btn.btn-lg.btn-primary.pull-xs-right(type='submit') 登录

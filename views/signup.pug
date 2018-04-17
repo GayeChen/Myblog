@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .page-header
+    h3 注册
+  form.form-horizontal(id='signup-form', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='email') 邮箱
+      .col-sm-7
+        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+    .form-group
+      label.col-sm-3.control-label(for='password') 密码
+      .col-sm-7
+        input.form-control(type='password', name='password', id='password', placeholder='Password', required)
+    .form-group
+      label.col-sm-3.control-label(for='confirmPassword') 确认密码
+      .col-sm-7
+        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', required)
+    .form-group
+      label.col-sm-3.control-label(for='gender') 性别
+      .col-sm-7
+        select.form-control(id='gender', name='gender', required)
+          option(value='m') 男
+          option(value='f') 女
+          option(value='x') 保密
+    .form-group
+      label.col-sm-3.control-label(for='avatar') 头像
+      .col-sm-7
+        input.form-control(type='file', name='avatar', id='avatar', required)
+    .form-group
+      label.col-sm-3.control-label(for='bio') 个人简介
+      .col-sm-7
+        textarea.form-control(name='bio', id='bio', required)
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        button.btn.btn-success.container-fluid(type='submit')
+          i.fas.fa-user-plus.fa-sm
+          | 注册
