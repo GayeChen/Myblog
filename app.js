@@ -33,9 +33,9 @@ app.use(session({
 app.use(flash())
 
 app.use(formidable({
-  // uploadDir: path.join(__dirname, 'public/img')
-  uploadDir: path.join(__dirname, 'uploads'),
-  keepExtensions: true
+  // // uploadDir: path.join(__dirname, 'uploads'),
+  uploadDir: path.join(__dirname, 'public/img'), // 上传文件目录
+  keepExtensions: true// 保留后缀
 }))
 
 // 设置模板全局常量
@@ -51,23 +51,17 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error').toString()
   res.locals.messages = {
     success: req.flash('success').toString(),
-    errors: req.flash('error').toString()
+    errors: req.flash('error').toString(),
+    info: req.flash('info').toString(),
   }
   next()
 })
 
 app.use(require('./routes'))
 // routes(app)
-// catch 404 and forward to error handler
-// 未匹配上以上业务逻辑的前端页面路由都返回'index.html'
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-  // res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
-/// error handlers
+
+/*/// error handlers
 
 // development error handler
 // will print stacktrace
@@ -90,7 +84,7 @@ app.use(function(err, req, res, next) {
       message: err.message,
       error: {}
     }});
-});
+});*/
 
 const server = app.listen(config.port, function (err) {
   console.log(`${pkg.name} listenning on port ${server.address().port}`);

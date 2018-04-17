@@ -6,11 +6,11 @@ block content
   form.form-horizontal(method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
-      label.col-sm-3.control-label(for='email') Email
+      label.col-sm-3.control-label(for='name') 用户名
       .col-sm-7
-        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+        input.form-control(name='name', id='name', placeholder='用户名', autofocus, required)
     .form-group
-      label.col-sm-3.control-label(for='password') Password
+      label.col-sm-3.control-label(for='password') 密码
       .col-sm-7
         input.form-control(type='password', name='password', id='password', placeholder='Password', required)
     .form-group

@@ -6,7 +6,7 @@ const router = express.Router()
 // })
 
 router.use('/api', require('./api'))
-router.use('/user', require('./user'))
+// router.use('/user', require('./user'))
 
 router.use('/signup', require('./signup'))
 router.use('/signin', require('./signin'))

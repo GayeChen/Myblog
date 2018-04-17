@@ -1,18 +1,17 @@
-if messages.errors
+if error
   .alert.alert-danger.fade.in
     button.close(type='button', data-dismiss='alert')
       i.far.fa-times-circle
-    for error in messages.errors
-      div= error.msg
+    p #{error}
+
 if messages.info
   .alert.alert-info.fade.in
     button.close(type='button', data-dismiss='alert')
       i.far.fa-times-circle
     for info in messages.info
       div= info.msg
-if messages.success
+if success
   .alert.alert-success.fade.in
     button.close(type='button', data-dismiss='alert')
       i.far.fa-times-circle
-    for success in messages.success
-      div= success.msg
+    p #{success}

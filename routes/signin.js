@@ -7,7 +7,7 @@ const checkNotLogin = require('../middlewares/check').checkNotLogin
 router.get('/', checkNotLogin, function (req, res, next) {
   // res.render('user/signin')
   res.render('signin', {
-    name: req.params.name
+    title: 'signin'
   })
 })
 
