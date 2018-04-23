@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    .page-header
+        h3 发表文章
+        input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+        div.col-sm-3
+            ul.nav.navbar-nav.navbar-right
+                if user
+                    li.dropdown(class=(title === 'user') ? 'active' : undefined)
+                        a(href='/posts?author' + user._id, data-title= user.name + '|' + {m: '男', f: '女', x: '保密'}[user.gender], data-content=user.bio)
+                            if user.avatar
+                                img(src= '/img/' + user.avatar)
+                            else
+                                img(src=user.gravatar(60))
+                            span= user.name || user.id
+
+        .col-sm-7
+            form.form-horizontal(id='signup-form', method='POST', enctype='multipart/form-data')
+                input(type='hidden', name='_csrf', value=_csrf)
+                .form-group
+                    label.col-sm-3.control-label(for='title') 标题
+                    .col-sm-7
+                        input.form-control(name='title', id='title', placeholder='标题', autofocus, required)
+                .form-group
+                    label.col-sm-3.control-label(for='content') 内容
+                    .col-sm-7
+                        textarea.form-control(name='content', id='content', required)
+                .form-group
+                    .col-sm-offset-3.col-sm-7
+                     button.btn
+                        .btn-success.container-fluid(type='submit')
+                        i.fas.fa-user-plus.fa-sm
+                        | 发布

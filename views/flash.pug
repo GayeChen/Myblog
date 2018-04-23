@@ -4,12 +4,11 @@ if error
       i.far.fa-times-circle
     p #{error}
 
-if messages.info
+if info
   .alert.alert-info.fade.in
     button.close(type='button', data-dismiss='alert')
       i.far.fa-times-circle
-    for info in messages.info
-      div= info.msg
+    p #{info}
 if success
   .alert.alert-success.fade.in
     button.close(type='button', data-dismiss='alert')
