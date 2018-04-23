@@ -33,3 +33,8 @@ yarn add config-lite connect-flash connect-mongo pug express express-formidable 
 12. `sha1`: sha1 加密，用于密码加密
 13. `winston`: 日志
 14. `express-winston`: express 的 winston 日志中间件
+
+
+##### 3. 页面
+- 注册
+

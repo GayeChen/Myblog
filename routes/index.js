@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-// router.use('/', function (req, res) {
-//   res.redirect('/posts')
-// })
+router.get('/', function (req, res) {
+  res.redirect('/posts')
+})
 
 router.use('/api', require('./api'))
 // router.use('/user', require('./user'))
