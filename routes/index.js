@@ -16,6 +16,21 @@ router.use('/square', require('./square'))
 
 router.use('/comments', require('./comments'))
 
+// 404 page
+router.use(function (req, res) {
+  if (!res.headersSent) {
+    res.status(404).render('404')
+  }
+})
+
+router.use(function (err, req, res, next) {
+  console.log(err);
+  req.flash('error', err.message)
+  res.redirect('/article')
+})
+
+
+
 module.exports = router
 
 // module.exports = function (app) {
