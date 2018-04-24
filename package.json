@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha",
-    "start": "NODE_ENV=production pm2 start index.js --name 'pug'"
+    "start": "NODE_ENV=production pm2 start app.js --name 'pug'"
   },
   "repository": {
     "type": "git",
