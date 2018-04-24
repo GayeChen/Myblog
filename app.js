@@ -82,6 +82,10 @@ app.use(function(err, req, res, next) {
     }});
 });*/
 
-const server = app.listen(config.port, function (err) {
-  console.log(`${pkg.name} listenning on port ${server.address().port}`);
-})
+if (module.parent) {
+  module.exports = app
+} else {
+  const server = app.listen(config.port, function (err) {
+    console.log(`${pkg.name} listenning on port ${server.address().port}`);
+  })
+}

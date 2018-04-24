@@ -4,7 +4,7 @@
   "description": "my blog built with node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "istanbul cover _mocha",
     "start": "nodemon app.js"
   },
   "repository": {
@@ -40,6 +40,9 @@
     "errorhandler": "^1.5.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-promise": "^3.7.0"
+    "eslint-plugin-promise": "^3.7.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.1.1",
+    "supertest": "^3.0.0"
   }
 }
