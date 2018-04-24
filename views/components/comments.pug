@@ -1,14 +1,14 @@
 div.col-sm-offset-3.col-sm-7
     h3 留言
     each comment in comments
-        div
-            span
+        .container-fluid
+            span.col-sm-2
                 img.img-thumbnail(src='/img/' + comment.author.avatar)
             div
                 a(href='/article?author=' + comment.author._id) #{comment.author.name}
                 div
                     span #{comment.created_at}
-                div.text-center #{comment.content}
+                div.text-center !{comment.content}
 
                 if user && comment.author._id && user._id.toString() === comment.author._id.toString()
                     div
