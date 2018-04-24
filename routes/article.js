@@ -4,12 +4,9 @@ const router = express.Router()
 const checkLogin = require('../middlewares/check').checkLogin
 const ArticleModel = require('../models/article')
 
+
 // GET /posts 所有用户或者特定用户的文章页
 //   eg: GET /posts?author=xxx
-router.get('/create', function (req, res, next) {
-  res.render('post')
-  // res.send('home')
-})
 
 router.get('/', function (req, res, next) {
   const author = req.query.author
@@ -22,7 +19,11 @@ router.get('/', function (req, res, next) {
     .catch(next)
 })
 
-router.get('/:articleId', function (req, res, next) {
+router.get('/create', checkLogin, function (req, res, next) {
+  res.render('post')
+})
+
+router.get('/:articleId', checkLogin, function (req, res, next) {
   const articleId = req.params.articleId
   Promise.all([
     ArticleModel.getArticleById(articleId),
@@ -40,6 +41,59 @@ router.get('/:articleId', function (req, res, next) {
     })
     .catch(next)
 })
+
+
+router.get('/:articleId/edit', checkLogin, function (req, res, next) {
+  const articleId = req.params.articleId;
+  const author = req.session.user._id;
+  ArticleModel.getRawArticleById(articleId)
+    .then(function (article) {
+      if(!article) {
+        throw new Error('该文章不存在')
+      }
+      if(author.toString() !== article.author._id.toString()) {
+        throw new Error('权限不足')
+      }
+      res.render('edit', {article})
+    })
+    .catch(next)
+})
+
+router.post('/:articleId/edit', checkLogin, function (req, res, next) {
+  const articleId = req.params.articleId
+  const author = req.session.user._id
+  const title = req.fields.title
+  const content = req.fields.content
+  
+  try {
+    if(!title.length) {
+      throw new Error('请填写标题')
+    }
+    if(!content.length) {
+      throw new Error('请填写内容')
+    }
+  } catch (e) {
+    req.flash('error', e.message)
+    return res.redirect('back')
+  }
+  
+  ArticleModel.getRawArticleById(articleId)
+    .then(function (article) {
+      if(!article) {
+        throw new Error('文章不存在')
+      }
+      if (article.author._id.toString() !== author.toString()) {
+        throw new Error('没有权限')
+      }
+      ArticleModel.updatePostById(articleId, {title, content})
+        .then(function () {
+          req.flash('success', '编辑文章成功')
+          res.redirect(`/article/${articleId}`)
+        })
+        .catch(next)
+    })
+})
+
 
 // POST /posts/create 发表一篇文章
 router.post('/create', checkLogin, function (req, res, next) {
@@ -71,6 +125,27 @@ router.post('/create', checkLogin, function (req, res, next) {
       res.redirect(`/article/${article._id}`)
     })
     .catch(next)
+})
+
+router.get('/:articleId/remove', checkLogin, function (req, res, next) {
+  const articleId = req.params.articleId;
+  const author = req.session.user._id;
+  
+  ArticleModel.getRawArticleById(articleId)
+    .then(function (article) {
+      if(!article) {
+        throw new Error('文章不存在')
+      }
+      if(article.author._id.toString() !== author.toString()) {
+        throw new Error('没有权限')
+      }
+      ArticleModel.delArticleId(articleId)
+        .then(function () {
+          req.flash('success', '删除文章成功')
+          res.redirect('/article')
+        })
+        .catch(next)
+    })
 })
 
 /*

@@ -18,10 +18,12 @@ block content
                             span 留言 （#{article.commentsCount || 0}）
                             if user && article.author._id && user._id.toString() === article.author._id.toString()
                                 div.text
-                                i.dropdown.icon
-                                div.dropdown-menu
-                                    div.item
-                                        a(href='/articles/' + article._id + '/edit') 编辑
-                                    div.item
-                                        a(href='/articles/' + article._id + '/remove') 删除
+                                ul.dropdown-menu
+                                    li
+                                        a(href='/article/' + article._id + '/edit') 编辑
+                                    li.divider
+                                    li
+                                        a(href='/article/' + article._id + '/remove') 删除
+
+
 

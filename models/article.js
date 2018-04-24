@@ -34,5 +34,14 @@ module.exports = {
         return Article
             .update({_id: articleId}, { $inc: { pv: 1}})
             .exec()
+    },
+    getRawArticleById: function (articleId) {
+       return Article.findOne({_id: articleId}).populate({path: 'author', model: 'User'}).exec()
+    },
+    updatePostById: function (articleId, data) {
+        return Article.update({_id: articleId}, {$set: data}).exec()
+    },
+    delArticleId: function (articleId) {
+        return Article.deleteOne({_id: articleId}).exec()
     }
 }

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    div.col-sm-4
+        a.img-thumbnail(href='/article?author=' + user._id, data-title= user.name + '|' + {m: '男', f: '女', x: '保密'}[user.gender], data-content=user.bio)
+            img(src='/img/' + user.avatar)
+    div.col-sm-6
+        form.form-horizontal(method='POST', action='/article/' + article._id + '/edit')
+            .form-group
+                label.col-sm-3.control-label(for='title') 标题
+                .col-sm-7
+                    input.form-control(name='title', value= article.title, id='title', required)
+            .form-group
+                label.col-sm-3.control-label(for='content') 内容
+                .col-sm-7
+                    textarea.form-control(name='content', id='content') #{article.content}
+            .form-group
+                .col-sm-offset-3.col-sm-7
+                    button.btn.btn-success.container-fluid(type='submit')
+                        i.fas.fa-user-plus.fa-sm
+                        | 发布

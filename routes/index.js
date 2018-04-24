@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', function (req, res) {
-  res.redirect('/posts')
+  res.redirect('/article')
 })
 
 router.use('/api', require('./api'))
