@@ -45,7 +45,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
       
       delete user.password
       req.session.user = user
-      res.redirect('/posts')
+      res.redirect('/article')
     })
     .catch(next)
 })

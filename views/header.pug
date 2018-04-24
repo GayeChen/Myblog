@@ -13,8 +13,8 @@
       ul.nav.navbar-nav
         li(class=(title === 'Home') ? 'active' : undefined)
           a(href='/') 首页
-        li(class=(title === 'API Examples') ? 'active' : undefined)
-          a(href='/api') API Examples
+        li(class=(title === '文章') ? 'active' : undefined)
+          a(href='/article') 文章
         li(class=(title === 'Contact') ? 'active' : undefined)
           a(href='/contact') 联系我
         li
@@ -37,6 +37,9 @@
             ul.dropdown-menu
               li
                 a(href='/account') 个人中心
+              li.divider
+              li(class=(title === '文章') ? 'active' : undefined)
+                a(href='/article/create') 文章
               li.divider
               li
                 a(href='/signout') 退出

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    each article in articles
+        .form-group
+            .col-sm-4
+                a(href='/article?author' + article.author._id, data-title= article.author.name + '|' + {m: '男', f: '女', x: '保密'}[article.author.gender], data-cotent= article.author.bio )
+                        img.img-thumbnail(src= '/img/' + article.author.avatar)
+            .col-sm-8
+                div
+                   h3
+                    a(href='/article/' + article._id) #{article.title}
+                    pre !{article.content}
+                    div
+                        span.tag #{article.created_at}
+                        span.tag.text-right
+                            span 浏览（#{article.pv || 0}）
+                            span 留言 （#{article.commentsCount || 0}）
+                            if user && article.author._id && user._id.toString() === article.author._id.toString()
+                                div.text
+                                i.dropdown.icon
+                                div.dropdown-menu
+                                    div.item
+                                        a(href='/articles/' + article._id + '/edit') 编辑
+                                    div.item
+                                        a(href='/articles/' + article._id + '/remove') 删除
+
