@@ -50,7 +50,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
       fs.unlink(req.files.avatar.path)
     })
     req.flash('error', e.message)
-    return res.redirect('/signup')
+    return res.redirect('/article')
   }
   
   password = sha1(password)
@@ -69,7 +69,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
       delete user.password
       req.session.user = user
       req.flash('success', '注册成功')
-      res.redirect('/posts')
+      res.redirect('/article')
     })
     .catch(function (e) {
       if(fs.exists(req.files.avatar.path), () => {

@@ -6,12 +6,10 @@ block content
         input(type='hidden', name='_csrf', value=_csrf)
     .form-group
         div.col-sm-3
-            ul.nav.navbar-nav.navbar-right
                 if user
-                    li.dropdown(class=(title === 'user') ? 'active' : undefined)
-                        a(href='/posts?author' + user._id, data-title= user.name + '|' + {m: '男', f: '女', x: '保密'}[user.gender], data-content=user.bio)
+                        a(href='/article?author' + user._id, data-title= user.name + '|' + {m: '男', f: '女', x: '保密'}[user.gender], data-content=user.bio)
                             if user.avatar
-                                img(src= '/img/' + user.avatar)
+                                img.img-thumbnail(src= '/img/' + user.avatar)
                             else
                                 img(src=user.gravatar(60))
                             span= user.name || user.id

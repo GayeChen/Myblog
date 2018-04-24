@@ -12,6 +12,8 @@ router.use('/signup', require('./signup'))
 router.use('/signin', require('./signin'))
 router.use('/signout', require('./signout'))
 router.use('/article', require('./article'))
+router.use('/square', require('./square'))
+
 router.use('/comments', require('./comments'))
 
 module.exports = router

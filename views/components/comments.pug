@@ -1,0 +1,23 @@
+div.col-sm-offset-3.col-sm-7
+    h3 留言
+    each comment in comments
+        div
+            span
+                img.img-thumbnail(src='/img/' + comment.author.avatar)
+            div
+                a(href='/article?author=' + comment.author._id) #{comment.author.name}
+                div
+                    span #{comment.created_at}
+                div.text-center #{comment.content}
+
+                if user && comment.author._id && user._id.toString() === comment.author._id.toString()
+                    div
+                        a(href='/comments/' + comment._id + '/remove') 删除
+    if user
+        form.form-horizontal(method='POST', action='/comments')
+            input(name='articleId', value=article._id, hidden)
+            div
+                textarea(name='content')
+            button.btn.btn-success.container-fluid(type='submit')
+                i.fas.fa-user-plus.fa-sm
+                | 留言

@@ -2,9 +2,10 @@ extends layout
 
 block content
     each article in articles
-        .form-group
-            .col-sm-4
-                a(href='/article?author' + article.author._id, data-title= article.author.name + '|' + {m: '男', f: '女', x: '保密'}[article.author.gender], data-cotent= article.author.bio )
+        .container-fluid
+            .col-sm-2
+
+                    a(href='/article?author' + article.author._id, data-title= article.author.name + '|' + {m: '男', f: '女', x: '保密'}[article.author.gender], data-cotent= article.author.bio )
                         img.img-thumbnail(src= '/img/' + article.author.avatar)
             .col-sm-8
                 div

@@ -3,13 +3,14 @@ const router = express.Router()
 
 const checkLogin = require('../middlewares/check').checkLogin
 const ArticleModel = require('../models/article')
-
+const CommentModel = require('../models/comment')
 
 // GET /posts 所有用户或者特定用户的文章页
 //   eg: GET /posts?author=xxx
 
-router.get('/', function (req, res, next) {
-  const author = req.query.author
+router.get('/', checkLogin, function (req, res, next) {
+  // const author = req.query.author
+  const author = req.session.user._id
   ArticleModel.getArticles(author)
     .then(function (articles) {
       res.render('articles', {
@@ -27,16 +28,19 @@ router.get('/:articleId', checkLogin, function (req, res, next) {
   const articleId = req.params.articleId
   Promise.all([
     ArticleModel.getArticleById(articleId),
+    CommentModel.getComments(articleId),
     ArticleModel.incPv(articleId),
   ])
     .then(function (result) {
       console.log(result, 'getAritcleById');
       const article = result[0]
+      const comments = result[1]
       if(!article) {
         throw new Error('该文章不存在')
       }
-      res.render('components/article-content', {
-        article
+      res.render('article', {
+        article: article,
+        comments: comments,
       })
     })
     .catch(next)

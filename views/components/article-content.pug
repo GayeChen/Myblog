@@ -1,32 +1,30 @@
-extends ../layout
+.container-fluid
+    div.col-sm-3
+        a(href='/article?author' + article.author._id, data-title= article.author.name + '|' + {
+            m: '男',
+            f: '女',
+            x: '保密'
+        }[article.author.gender], data-cotent= article.author.bio)
+            if user.avatar
+                img.img-thumbnail(src= '/img/' + user.avatar)
+            else
+                img(src=user.gravatar(60))
 
-block content
-    div.col-sm-2
-            a(href='/article?author' + article.author._id, data-title= article.author.name + '|' + {
-                m: '男',
-                f: '女',
-                x: '保密'
-            }[article.author.gender], data-cotent= article.author.bio)
-                if user.avatar
-                    img.img-thumbnail(src= '/img/' + user.avatar)
-                else
-                    img(src=user.gravatar(60))
-
+        if user && article.author._id && user._id.toString() === article.author._id.toString()
             a.dropdown-toggle(data-toggle='dropdown' )= user.name || user.id
             i.caret
-            if user && article.author._id && user._id.toString() === article.author._id.toString()
             ul.dropdown-menu
                 li
                     a(href='/article/' + article._id + '/edit') 编辑
                 li.divider
                 li
                     a(href='/article/' + article._id + '/remove') 删除
-    div.col-sm-8
-            h3
-                    a(href='/article/' + article._id) #{article.title}
-                    pre !{article.content}
-                    div
-                        span.tag #{article.created_at}
-                        span.tag.text-right
-                            span 浏览（#{article.pv || 0}）
-                            span 留言 （#{article.commentsCount || 0}）
+    div.col-sm-7
+        h3
+            a(href='/article/' + article._id) #{article.title}
+            pre !{article.content}
+            div
+                span.tag #{article.created_at}
+                span.tag.text-right
+                    span 浏览（#{article.pv || 0}）
+                    span 留言 （#{article.commentsCount || 0}）
