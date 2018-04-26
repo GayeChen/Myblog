@@ -5,8 +5,6 @@ module.exports = {
     return User.create(user).exec()
   },
   getUserByName: function getUserByName(name) {
-    return User
-      .findOne({name})
-      .exec()
+    return User.findOne({name}).exec()
   }
 }

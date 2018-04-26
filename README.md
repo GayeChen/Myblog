@@ -1,6 +1,6 @@
 # Myblog
 
-## Node + Pug + Bootstrap
+## Express + Pug(原jade) + Bootstrap
 ## 主要功能
 - 注册登录登出
 - 发表文章，更新删除文章
@@ -40,7 +40,4 @@ yarn add config-lite connect-flash connect-mongo pug express express-formidable 
 13. `winston`: 日志
 14. `express-winston`: express 的 winston 日志中间件
 
-
-##### 3. 页面
-- 注册
 

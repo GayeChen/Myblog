@@ -1,5 +1,7 @@
-config/*
-!config/default.*
+/config/*
+!/config/default.*
 npm-debug.log
-node_modules
-coverage
+/node_modules
+/coverage
+.idea
+yarn-error.log
